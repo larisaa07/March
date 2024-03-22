@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Lucky Me Lottery</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -50,24 +50,25 @@
             </div>
 
             <div class="row" id="nameInput">
-                <input type="text" class="form-control" id="nameInputBox" placeholder="Name"/>
+                <input type="text" class="form-control" id="nameInput" placeholder="Name"/>
 
-                <button onclick="" class="btn btn-secondary">Enter</button>
+                <button id="addNameBtn" class="btn btn-secondary" >Enter</button>
             </div>
 
             <!--div to display the names-->
             <div class="row">
-                <div class="list" id="nameDisplayDiv">
-                    Name list here...
+                <div class="list">
+                    <ul id="nameList" class="list-group"></ul>
+                    Names will go here
                 </div>
             </div>
 
             <!--button to select a name-->
-            <button onclick="" class="btn btn-secondary">Select</button>
+            <button id="pickRandomBtn" class="btn btn-secondary">Select</button>
 
             <!--div to display selected name-->
             <div class="row">
-                <div class="display" id="selectedNameDiv">
+                <div class="display" id="randomName">
                     Selected Name Here
                 </div>
             </div>
