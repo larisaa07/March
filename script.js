@@ -1,33 +1,64 @@
-//create a list (array) to store names
-const nameArray = [] 
+const nameArray = []; //Create a list to store names
 
-function addName(){
-    const nameInput = document.getElementById('nameInput')
-    //get a trimmed verion of what was in the input box
-    const name = nameInput.value.trim()
-    nameArray.push(name)
-    displayName()
-    nameInput.value = '' //clears input box after clicking enter
+function addName() {
+  const nameInput = document.getElementById("nameInput");
+    const name = nameInput.value.trim();
+  //get a trimmed version of the name from the input box
+  if (name === '') {
+    document.getElementById("warnings").innerText = "Please input a name first";
+    document.getElementById("warnings").classList = "text-danger";
+    console.log("IF");
+  } else {
+    console.log("ELSE!");
+    document.getElementById("warnings").innerText = "...";
+    document.getElementById("warnings").classList = "text-dark"
+        nameArray.push(name);
+    displayNames();
+    nameInput.value = "";
+  }
 }
 
-function displayNames(){
-    const nameList = document.getElementById('nameList') //get the <ul> element
-    nameList.innerHTML = '' //clears the list
+function displayNames() {
+  const nameList = document.getElementById("nameList"); //get UL element
+  nameList.innerHTML = ""; //clears the list
 
-    //will show nothing at 0; and runs as many times as there are names in the nameArray list
-    for (let i = 0; i < nameArray.length; i++){
-        const name = nameArray[i] //get the current name from the array
-        const li = document.createElement('li') //created an <li>
-        li.className = 'list-group-item' //add a class to the <li>; this class styles the list item
+  for (let i = 0; i < nameArray.length; i++) {
+    const name = nameArray[i]; //get the current name from the array
 
-        const span = document.createElement('span')
-        span.textContent = name
+    const li = document.createElement("li");
+    li.className = "list-group-item";
 
-        li.appendChild(span) //(makes span the child tag of li); span inside li
-        nameList.appendChild(li) // nests the li inside the name list
-    }
+    const span = document.createElement("span");
+    span.textContent = name;
+
+    li.appendChild(span);
+    nameList.appendChild(li);
+  }
 }
 
+function pickRandomName() {
+  const randomNameDiv = document.getElementById("randomName");
+  randomNameDiv.textContent = "";
 
-//add onclick to add names
-document.getElementById('addNameBtn').addEventListener('click', addName)
+  if (nameArray.length === 0) {
+    randomNameDiv.textContent = "No names avainable";
+    return;
+  }
+
+  const randomNumber = Math.floor(Math.random() * nameArray.length);
+  const randomName = nameArray[randomNumber];
+
+  randomNameDiv.textContent = randomName;
+
+  nameArray.splice(randomNumber, 1);
+
+  displayNames();
+}
+
+// add onclick to add name btn
+document.getElementById("addNameBtn").addEventListener("click", addName);
+
+// add onclick to add name btn
+document
+  .getElementById("pickRandomBtn")
+  .addEventListener("click", pickRandomName);
